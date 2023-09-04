@@ -1,41 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Giao diện di động với Bootstrap</title>
-    <!-- Thêm Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Tùy chỉnh CSS cho di động -->
-    <style>
-        /* Tùy chỉnh CSS cho di động */
-        @media (max-width: 768px) {
-            /* Điều chỉnh kích thước font chữ hoặc bố cục cho di động ở đây */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ứng dụng tính tồn cuối</title>
+  <!-- Sử dụng Bootstrap CDN để tạo giao diện cho điện thoại -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-
-<div class="container">
-    <h1 class="text-center">Trang di động</h1>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Cột 1</th>
-                <th>Cột 2</th>
-                <th>Cột 3</th>
-                <th>Cột 4</th>
+  <div class="container">
+    <h1 class="mt-5">Tính tồn cuối</h1>
+    <table class="table mt-4">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Kilogram</th>
+          <th>Miếng</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Tồn Đầu</th>
+          <td><input type="number" class="form-control" id="tondau-kg"></td>
+          <td><input type="number" class="form-control" id="tondau-mieng"></td>
+        </tr>
+        <tr>
+          <th scope="row">Nhập</th>
+          <td><input type="number" class="form-control" id="nhap-kg"></td>
+          <td><input type="number" class="form-control" id="nhap-mieng"></td>
+        </tr>
+        <tr>
+          <th scope="row">Sau chiên</th>
+          <td><input type="number" class="form-control" id="sauchien-kg" readonly=""></td>
+            <td><input type="number" class="form-control" id="sauchien-mieng"></td>
             </tr>
-        </thead>
-        <tbody>
             <tr>
-                <td><input type="text" class="form-control"></td>
-                <td><input type="text" class="form-control"></td>
-                <td><input type="text" class="form-control"></td>
-                <td><input type="text" class="form-control"></td>
+            <th scope="row">Tồn Cuối</th>
+            <td><input type="number" class="form-control" id="toncuoi-kg" readonly></td>
+            <td><input type="number" class="form-control" id="toncuoi-mieng"></td>
             </tr>
-        </tbody>
-    </table>
-</div>
+            </tbody>
+            </table>
+            </div>
 
-<!-- Thêm Bootstrap JavaScript và jQuery CDN (nếu cần) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd
+            <!-- Sử dụng Bootstrap và jQuery từ CDN -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+            
+            
+
+<script>
+  // Lấy các ô nhập liệu
+  const tondauKg = document.getElementById('tondau-kg');
+  const tondauMieng = document.getElementById('tondau-mieng');
+  const nhapKg = document.getElementById('nhap-kg');
+  const nhapMieng = document.getElementById('nhap-mieng');
+  const sauChienMieng = document.getElementById('sauchien-mieng');
+  const toncuoiKg = document.getElementById('toncuoi-kg');
+  const toncuoiMieng = document.getElementById('toncuoi-mieng');
+
+  // Tính tồn cuối khi có thay đổi trong tồn đầu, nhập và hủy
+  function tinhTonCuoi() {
+    const tondauKgValue = parseFloat(tondauKg.value) || 0;
+    const tondauMiengValue = parseFloat(tondauMieng.value) || 0;
+    const nhapKgValue = parseFloat(nhapKg.value) || 0;
+    const nhapMiengValue = parseFloat(nhapMieng.value) || 0;
+
+    const sauChienMiengValue = parseFloat(sauChienMieng.value) || 0;
+    const toncuoiMiengValue = parseFloat(toncuoiMieng.value) || 0;
+
+    const toncuoiKgValue = (tondauKgValue + nhapKgValue) / (tondauMiengValue + nhapMiengValue) * (toncuoiMiengValue - sauChienMiengValue);
+
+    toncuoiKg.value = toncuoiKgValue.toFixed(2);
+  }
+
+  // Gọi hàm tính tồn cuối khi có sự thay đổi trong các ô nhập liệu
+  tondauKg.addEventListener('input', tinhTonCuoi);
+  tondauMieng.addEventListener('input', tinhTonCuoi);
+  nhapKg.addEventListener('input', tinhTonCuoi);
+  nhapMieng.addEventListener('input', tinhTonCuoi);
+  sauChienMieng.addEventListener('input', tinhTonCuoi);
+  toncuoiMieng.addEventListener('input', tinhTonCuoi);
+
+  // Tính tồn cuối ban đầu khi trang được tải
+  tinhTonCuoi();
+
+            </script>
+            </body>
+            </html>
