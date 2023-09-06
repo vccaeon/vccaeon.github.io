@@ -131,16 +131,16 @@
       var botNgot = 100 * nuocLit / 30;
       var hatNem = 150 * nuocLit / 30;
       var nuocMam = 200 * nuocLit / 30;
-      var sate = 3;
+      var sate = 3 * nuocLit / 30;
 
       // Hiển thị kết quả trên bảng
-      document.getElementById("botCanh").textContent = botCanh.toFixed(0) + " (gói)";
+      document.getElementById("botCanh").textContent = botCanh.toFixed(2) + " (gói)";
       document.getElementById("lauThai").textContent = lauThai.toFixed(0) + " (gói)";
       document.getElementById("duong").textContent = duong.toFixed(0) + "g";
       document.getElementById("botNgot").textContent = botNgot.toFixed(0) + "g";
       document.getElementById("hatNem").textContent = hatNem.toFixed(0) + "g";
       document.getElementById("nuocMam").textContent = nuocMam.toFixed(0) + "g";
-      document.getElementById("sate").textContent = sate + " (hũ)";
+      document.getElementById("sate").textContent = sate.toFixed(2) + " (hũ)";
     }
   </script>
 
