@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tính Định Lượng Lẩu Đầu Cá</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!--Moment.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script>
+    function updateDateTime() {
+      var currentDateTime = moment().format('DD/MM/YYYY HH:mm:ss');
+      document.getElementById('datetime').innerHTML = currentDateTime;
+    }
+    setInterval(updateDateTime, 1000);
+  </script>
+  <style>
+    /* Đổi màu nền và font chữ cho footer */
+    footer {
+      background-color: #333;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Đổi màu nền cho nút và hiệu ứng hover */
+    .btn-primary {
+      background-color: #3498db;
+      color: #fff;
+      transition: background-color 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #2980b9;
+    }
+
+    .btn-success {
+      background-color: #2ecc71;
+      color: #fff;
+      transition: background-color 0.3s;
+    }
+
+    .btn-success:hover {
+      background-color: #27ae60;
+    }
+
+    /* Đổi màu chữ cho các tiêu đề */
+    h3 {
+      color: #333;
+    }
+
+    /* CSS để cố định footer ở dưới cùng */
+    body {
+      position: relative;
+      min-height: 100vh;
+    }
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+    .footer-line {
+      border-top: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="index.html"><i class="fa fa-home" aria-hidden="true"></i></a>
+    <div id="datetime" style="position: absolute; top: 10px; right: 10px;"></div>
+  </nav>
+  <div class="container">
+    <h3 class="mt-4">Định lượng lẩu đầu cá</h3>
+    <div class="form-group">
+      <label for="nuocLit">Nhập số lít nước:</label>
+      <input type="number" id="nuocLit" class="form-control" placeholder="Số lít nước">
+    </div>
+    <button class="btn btn-primary" onclick="tinhDinhLuong()">Tính</button>
+
+    <h2 class="mt-4">Kết quả:</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Gia vị</th>
+          <th>Định lượng (gram)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bột canh</td>
+          <td id="botCanh">0</td>
+        </tr>
+        <tr>
+          <td>Đường</td>
+          <td id="duong">0</td>
+        </tr>
+        <tr>
+          <td>Bột ngọt</td>
+          <td id="botNgot">0</td>
+        </tr>
+        <tr>
+          <td>Hạt nêm</td>
+          <td id="hatNem">0</td>
+        </tr>
+        <tr>
+          <td>Nước mắm</td>
+          <td id="nuocMam">0</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function tinhDinhLuong() {
+      // Lấy giá trị số lít nước từ ô nhập
+      var nuocLit = parseFloat(document.getElementById("nuocLit").value);
+
+      // Định lượng các thành phần dựa trên số lít nước
+      var botCanh = (nuocLit / 60) * 2;
+      var duong = (nuocLit / 60) * 800;
+      var botNgot = (nuocLit / 60) * 200;
+      var hatNem = (nuocLit / 60) * 300;
+      var nuocMam = (nuocLit / 60) * 400;
+
+      // Hiển thị kết quả trên bảng
+      document.getElementById("botCanh").textContent = botCanh.toFixed(0) + " (gói)";
+      document.getElementById("duong").textContent = duong.toFixed(0);
+      document.getElementById("botNgot").textContent = botNgot.toFixed(0);
+      document.getElementById("hatNem").textContent = hatNem.toFixed(0);
+      document.getElementById("nuocMam").textContent = nuocMam.toFixed(0);
+    }
+  </script>
+
+  <footer class="text-center mt-4">
+    <hr class="footer-line">
+    <p>
+      Created by TuDu
+    </p>
+  </footer>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
