@@ -108,7 +108,10 @@ h3 {
         <tr>
           <th scope="row">Tồn Cuối</th>
           <td><input type="number" class="form-control" id="toncuoi-kg" readonly></td>
-          <td><input type="number" class="form-control" id="toncuoi-mieng" placeholder="Thực tế kiểm""></td>
+          <td>
+            <input type="number" class="form-control" id="thuckiem-id" readonly="">
+            
+            </td>
         </tr>
       </tbody>
     </table>
@@ -120,8 +123,8 @@ h3 {
       <thead>
         <tr>
           <th></th>
-          <th>Thực Kiểm</th>
-          <th>Thực Bán</th>
+          <th>Bán ra</th>
+          <th>Kiểm tồn</th>
           <th>Sai Lệch</th>
         </tr>
       </thead>
@@ -129,7 +132,10 @@ h3 {
       <tbody>
         <tr>
           <th scope="row">Miếng</th>
-          <td><input type="number" class="form-control" id="thuckiem-id" readonly=""></td>
+          <td>
+            <input type="number" class="form-control" id="toncuoi-mieng">
+            
+            </td>
           <td><input type="number" class="form-control" id="thucban-id"></td>
           <td><input type="number" class="form-control" id="sailech-id" readonly=""></td>
         </tr>
@@ -183,13 +189,13 @@ h3 {
       const thucKiemTemp = (tondauMiengValue + nhapMiengValue + tonDauSauChienMiengValue) - (toncuoiMiengValue + tonCuoiSauChienMiengValue);
       thucKiem.value = thucKiemTemp;
 
-      const saiLechTmp = thucKiemTemp - thucBanValue;
+      const saiLechTmp = thucBanValue - thucKiemTemp;
       saiLech.value = saiLechTmp;
 
       const gramTmp = (tondauKgValue + nhapKgValue) / (tondauMiengValue + nhapMiengValue) ||0;
       gram.innerText = "Khối lượng tb mỗi phần: " + (gramTmp * 1000 * 5).toFixed(2) +"(g)";
 
-      const toncuoiKgValue = (tondauKgValue + nhapKgValue) / (tondauMiengValue + nhapMiengValue) * toncuoiMiengValue;
+      const toncuoiKgValue = (tondauKgValue + nhapKgValue) / (tondauMiengValue + nhapMiengValue) * thucKiemTemp;
 
       toncuoiKg.value = toncuoiKgValue.toFixed(2);
     }
